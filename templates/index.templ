@@ -1,0 +1,108 @@
+package templates
+
+import (
+	"fmt"
+	"strings"
+)
+
+type Dependency struct {
+	ID          string
+	Name        string
+	Description string
+	Category    string
+}
+
+type ProjectForm struct {
+	Name         string
+	Dependencies []Dependency
+}
+
+templ Index() {
+	@Layout("Home") {
+		<div class="hero">
+			<h1>Golang Initializr</h1>
+			<p>Quickly generate Go project skeleton with the dependencies you need</p>
+		</div>
+		<div class="project-form">
+			<form id="project-form" action="/generate" method="post">
+				<div class="form-group">
+					<label for="project-name">Project Name</label>
+					<input 
+						type="text" 
+						id="project-name" 
+						name="name" 
+						placeholder="github.com/username/project" 
+						required
+					/>
+				</div>
+				
+				<div class="dependencies-section">
+					<h2>Dependencies</h2>
+					<p class="note">All projects include: Uber FX, Zap Logger, Clean Architecture</p>
+					
+					<div class="dependency-categories">
+						<div class="category">
+							<h3>Databases</h3>
+							<div class="dependency-list">
+								<div class="dependency-item">
+									<input type="checkbox" id="postgres" name="dependencies" value="postgres"/>
+									<label for="postgres">PostgreSQL</label>
+								</div>
+								<div class="dependency-item">
+									<input type="checkbox" id="redis" name="dependencies" value="redis"/>
+									<label for="redis">Redis</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="category">
+							<h3>Messaging</h3>
+							<div class="dependency-list">
+								<div class="dependency-item">
+									<input type="checkbox" id="kafka" name="dependencies" value="kafka"/>
+									<label for="kafka">Kafka</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="category">
+							<h3>API</h3>
+							<div class="dependency-list">
+								<div class="dependency-item">
+									<input type="checkbox" id="http" name="dependencies" value="http" checked/>
+									<label for="http">HTTP (Echo)</label>
+								</div>
+								<div class="dependency-item">
+									<input type="checkbox" id="grpc" name="dependencies" value="grpc"/>
+									<label for="grpc">gRPC</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="category">
+							<h3>Tools</h3>
+							<div class="dependency-list">
+								<div class="dependency-item">
+									<input type="checkbox" id="docker" name="dependencies" value="docker" checked/>
+									<label for="docker">Docker</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-actions">
+					<button type="submit" class="btn-primary">Generate Project</button>
+				</div>
+			</form>
+			
+			<!-- Form submits directly to generate endpoint for immediate download -->
+		</div>
+	}
+}
+
+templ downloadLink(projectName string, dependencies []string) {
+	<a href={ templ.SafeURL("/download?session=" + projectName + "-" + fmt.Sprint(len(dependencies))) } class="btn-download">Download Project</a>
+}
+
+// No longer needed as we directly return the ZIP file

@@ -1,0 +1,38 @@
+package templates
+
+templ Layout(title string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ title } - Golang Initializr</title>
+			<link rel="stylesheet" href="/static/css/styles.css"/>
+			<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+		</head>
+		<body>
+			<header>
+				<div class="container">
+					<div class="logo">
+						<img src="/static/images/gopher.png" alt="Golang Gopher"/>
+						<h1>Golang Initializr</h1>
+					</div>
+					<nav>
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="https://github.com/malinatrash/golang-initializr" target="_blank">GitHub</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<main class="container">
+				{ children... }
+			</main>
+			<footer>
+				<div class="container">
+					<p>© 2025 Golang Initializr | Made with ❤️ for Go developers</p>
+				</div>
+			</footer>
+		</body>
+	</html>
+}
