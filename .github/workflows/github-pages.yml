@@ -38,33 +38,11 @@ jobs:
       - name: Build application
         run: go build -o golang-initializr
       
-      - name: Generate static HTML
+      - name: Deploy static files
         run: |
           mkdir -p ./build
-          # Skip running the application since it starts a server
-          # Instead, just copy static files and create an index.html
-          cp -r ./static/* ./build/ || true
-          
-          # Create index.html directly
-          cat > ./build/index.html << 'EOL'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Golang Initializr</title>
-            <link rel="stylesheet" href="css/style.css">
-          </head>
-          <body>
-            <div class="container">
-              <h1>Golang Initializr</h1>
-              <p>A tool to quickly bootstrap Go applications with clean architecture.</p>
-              <p>This is a static preview of the application. For the full functionality, please clone the repository and run it locally.</p>
-              <p><a href="https://github.com/malinatrash/golang-initializr">View on GitHub</a></p>
-            </div>
-          </body>
-          </html>
-          EOL
+          # Copy all static files including our custom index.html
+          cp -r ./static/* ./build/
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

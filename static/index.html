@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home - Golang Initializr</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/gopher.png" alt="Golang Gopher"/>
+                <h1>Golang Initializr</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="https://github.com/malinatrash/golang-initializr" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="hero">
+            <h1>Golang Initializr</h1>
+            <p>Quickly generate Go project skeleton with the dependencies you need</p>
+        </div>
+        <div class="project-form">
+            <form id="project-form" action="https://github.com/malinatrash/golang-initializr" method="get">
+                <div class="form-group">
+                    <label for="project-name">Project Name</label>
+                    <input 
+                        type="text" 
+                        id="project-name" 
+                        name="name" 
+                        placeholder="github.com/username/project" 
+                        required
+                    />
+                </div>
+                
+                <div class="dependencies-section">
+                    <h2>Dependencies</h2>
+                    <p class="note">All projects include: Uber FX, Zap Logger, Clean Architecture</p>
+                    
+                    <div class="dependency-categories">
+                        <div class="category">
+                            <h3>Databases</h3>
+                            <div class="dependency-list">
+                                <div class="dependency-item">
+                                    <input type="checkbox" id="postgres" name="dependencies" value="postgres"/>
+                                    <label for="postgres">PostgreSQL</label>
+                                </div>
+                                <div class="dependency-item">
+                                    <input type="checkbox" id="redis" name="dependencies" value="redis"/>
+                                    <label for="redis">Redis</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category">
+                            <h3>Messaging</h3>
+                            <div class="dependency-list">
+                                <div class="dependency-item">
+                                    <input type="checkbox" id="kafka" name="dependencies" value="kafka"/>
+                                    <label for="kafka">Kafka</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category">
+                            <h3>API</h3>
+                            <div class="dependency-list">
+                                <div class="dependency-item">
+                                    <input type="checkbox" id="http" name="dependencies" value="http" checked/>
+                                    <label for="http">HTTP (Echo)</label>
+                                </div>
+                                <div class="dependency-item">
+                                    <input type="checkbox" id="grpc" name="dependencies" value="grpc"/>
+                                    <label for="grpc">gRPC</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category">
+                            <h3>Tools</h3>
+                            <div class="dependency-list">
+                                <div class="dependency-item">
+                                    <input type="checkbox" id="docker" name="dependencies" value="docker" checked/>
+                                    <label for="docker">Docker</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">View on GitHub</button>
+                </div>
+            </form>
+            
+            <div class="static-notice">
+                <p><strong>Note:</strong> This is a static preview of the Golang Initializr. For full functionality, please clone the repository and run it locally.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>© 2025 Golang Initializr | Made with ❤️ for Go developers</p>
+        </div>
+    </footer>
+</body>
+</html>
